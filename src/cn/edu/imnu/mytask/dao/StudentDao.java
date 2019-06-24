@@ -13,25 +13,53 @@ public class StudentDao {
 	public int login(String email, String password) {
 		// TODO Auto-generated method stub
 		int applicantID = 0;
-		int tags = 0;
 		Connection conn = DBUtil.getConnection();
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmtID = null;
 		ResultSet rs = null;
-		String sql = "SELECT login_id FROM tb_applicant WHERE login_id = ? and login_password = ?";
+		String sql = "SELECT login_id FROM tb_login WHERE login_number = ? and login_password = ?";
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, email);
-			pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
+			pstmtID = conn.prepareStatement(sql);
+			pstmtID.setString(1, email);
+			pstmtID.setString(2, password);
+			rs = pstmtID.executeQuery();
 			if (rs.next())
-				applicantID = rs.getInt("applicant_id");
+			{
+				applicantID = rs.getInt("login_id");
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			DBUtil.closeJDBC(rs, pstmt, conn);
+			DBUtil.closeJDBC(rs, pstmtID, conn);
 		}
 		return applicantID;
 	}
+	
+	public int logintag(String email, String password) {
+		// TODO Auto-generated method stub
+		int tags = 0;
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmtTAG = null;
+		ResultSet rs = null;
+		String sql = "SELECT login_tag FROM tb_login WHERE login_number = ? and login_password = ?";
+		try {
+			pstmtTAG = conn.prepareStatement(sql);
+			pstmtTAG.setString(1, email);
+			pstmtTAG.setString(2, password);
+			rs = pstmtTAG.executeQuery();
+			if(rs.next())
+				tags = rs.getInt("login_tag");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeJDBC(rs, pstmtTAG, conn);
+		}
+		return tags;
+	}
+
 }
+
+

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>请假管理系统</title>
+<title>学生请假管理系统</title>
 <link href="css/base.css" type="text/css" rel="stylesheet" />
 <link href="css/login.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript">
@@ -35,17 +35,16 @@
       <p class="font14">使用学号密码登录</p>
       <div class="span1">
         <label class="tn-form-label">学号：</label>
-        <input  class="tn-textbox" type="text">
+        <input  class="tn-textbox" type="text" name="email" id="email">
       </div>
       <div class="span1">
         <label class="tn-form-label">密码：</label>
-        <input class="tn-textbox"  type="password">
+        <input class="tn-textbox"  type="password" name="password" id="password">
       </div>
       <div class="tn-form-row-button">
         <div class="span1">
-          <input name="" type="text" class="tn-button-text" value="登   录">
+          <input name="submit" type="submit" class="tn-button-text" value="登   录">
           <span class="it-register-text">
-          <input checked="checked" class="tn-checkbox" value="true" type="checkbox">
           </span> 
           </div>
 
