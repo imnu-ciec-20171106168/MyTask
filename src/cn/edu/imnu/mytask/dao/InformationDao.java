@@ -4,12 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
+
 import cn.edu.imnu.mytask.util.DBUtil;
 
-public class StudentDao {
-	
+public class InformationDao {
 	public int login(String email, String password) {
 		// TODO Auto-generated method stub
 		int applicantID = 0;
@@ -59,7 +57,4 @@ public class StudentDao {
 		}
 		return tags;
 	}
-
 }
-
-

@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import cn.edu.imnu.mytask.bean.ApplyLeave;
+import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.util.DBUtil;
 
 public class ApplyLeaveDao {
-	public  int add(ApplyLeave applyleave, int applicantID) {
+	public  int add(ApplyLeaveBean applyleave, int applicantID) {
 		// TODO Auto-generated method stub
 		int leaverecordID=0;
 		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,leavereson,student_id)VALUES(?,?,?,?,?,?,?,?)";

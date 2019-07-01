@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.edu.imnu.mytask.bean.ApplyLeave;
+import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
+import cn.edu.imnu.mytask.bean.InformationBean;
 import cn.edu.imnu.mytask.dao.ApplyLeaveDao;
 
 /**
@@ -45,35 +46,42 @@ public class ApplyLeaveServlet extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		String type = request.getParameter("type");
 		if("add".equals(type)) {
-			ApplyLeave applyleave = this.requestDataObj(request);
-			Applicant applicant=(Applicant)request.getSession().getAttribute("SESSION_APPLICANT");
-			ResumeDAO dao=new ResumeDAO();
-			int basicinfoID=dao.add(applyleave,applicant.getApplicantId());
-			request.getSession().setAttribute("SESSION_RESUMEID", basicinfoID);
+			ApplyLeaveBean applyleave = this.requestDataObj(request);
+			InformationBean applicant=(InformationBean)request.getSession().getAttribute("SESSION_APPLICANT");
+			ApplyLeaveDao dao=new ApplyLeaveDao();
+			int leaverecordID=dao.add(applyleave,applicant.getApplicantId());
+			request.getSession().setAttribute("SESSION_RESUMEID", leaverecordID);
 			response.sendRedirect("resume.jsp");
 		}
 	}
 	
-	private ApplyLeave requestDataObj(HttpServletRequest request) {
+	private ApplyLeaveBean requestDataObj(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		ApplyLeave basicinfo = null;
-		String realName = request.getParameter("realName");
-		String gender = request.getParameter("gender");
-		String birthday = request.getParameter("birthday");
+		ApplyLeaveBean applyleave = null;
+		String realnumber = request.getParameter("realnumber");
+		String realname = request.getParameter("realname");
+		String realgrade = request.getParameter("realgrade");
 		String telephone = request.getParameter("telephone");
-		String email = request.getParameter("email");
-		String jobIntention = request.getParameter("jobIntention");
-		String jobExperience = request.getParameter("jobExperience");
+		String startimes = request.getParameter("startime");
+		String endtimes = request.getParameter("endtime");
+		String leavereason = request.getParameter("leavereason");
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-	    Date birthdayDate = null;
+	    Date startime = null;
 		try {
-			birthdayDate = (Date) sdf.parse(birthday);
+			startime = (Date) sdf.parse(startimes);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
-			birthdayDate = null;
+			startime = null;
 		}
-		applyleave = new ApplyLeave(realnumber, realname, realgrade, startime, endtime, telephone, leavereason);
-		return basicinfo;
+		Date endtime = null;
+		try {
+			endtime = (Date) sdf.parse(endtimes);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			endtime = null;
+		}
+		applyleave = new ApplyLeaveBean(realnumber,realname,realgrade,startime,endtime,telephone,leavereason);
+		return applyleave;
 	}
 
 }

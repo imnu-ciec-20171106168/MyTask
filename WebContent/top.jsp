@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="cn.edu.imnu.mytask.bean.InformationBean"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,9 @@
 <link href="css/base.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<a href = "ApllyLeaveServlet?type = select">
+
+</a>
 <div class="head">
 		
 	</div>

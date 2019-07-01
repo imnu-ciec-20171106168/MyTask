@@ -9,6 +9,9 @@
 <link href="css/login.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
+<a href = "ApplyLeaveServlet?type = select">
+<span class = "tn-button" > 学生申请请假</span>
+</a>
 <style>
 .success_content {
 	width: 1000px;

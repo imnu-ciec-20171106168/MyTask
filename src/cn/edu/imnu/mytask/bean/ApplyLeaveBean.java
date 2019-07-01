@@ -3,8 +3,8 @@ package cn.edu.imnu.mytask.bean;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-public class ApplyLeave {
-	public ApplyLeave(String realnumber, String realname, String realgrade, Date startime, Date endtime, String telephone, String leavereason) 
+public class ApplyLeaveBean {
+	public ApplyLeaveBean(String realnumber, String realname, String realgrade, Date startime, Date endtime, String telephone, String leavereason) 
 	{
 		// TODO Auto-generated constructor stub
 	}

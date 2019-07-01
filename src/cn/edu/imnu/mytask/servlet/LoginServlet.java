@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import cn.edu.imnu.mytask.dao.StudentDao;
+import cn.edu.imnu.mytask.dao.InformationDao;
 
 /**
  * Servlet implementation class LoginServlet
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();	
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
-		StudentDao dao = new StudentDao();
+		InformationDao dao = new InformationDao();
 		int applicantID = dao.login(email,password);
 		int tags = dao.logintag(email, password);
 		

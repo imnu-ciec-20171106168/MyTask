@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-<body>
 <link href="css/base.css" type="text/css" rel="stylesheet" />
 <link href="css/my_resume.css" type="text/css" rel="stylesheet" />
 <meta content="大学生求职,大学生就业,大学生招聘,IT人才,IT人才招聘,大学生名企招聘,,大学生找工作,IT名企招聘，IT行业招聘，IT企业快速入职" name="keywords">
@@ -39,10 +37,8 @@
 		
 </script>
 </head>
-
 <body>
 <iframe src="top.jsp" width="100%" height="100"  scrolling="no" frameborder="0" ></iframe>
-
 <div class="resume_con">
 	<!--tab设置-->
 	<div class="user_operate">
