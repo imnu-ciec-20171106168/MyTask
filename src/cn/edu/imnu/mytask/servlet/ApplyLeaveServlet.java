@@ -62,7 +62,7 @@ public class ApplyLeaveServlet extends HttpServlet {
 		String realname = request.getParameter("realname");
 		String realgrade = request.getParameter("realgrade");
 		String telephone = request.getParameter("telephone");
-		String startimes = request.getParameter("startime");
+		String startimes = request.getParameter("starttime");
 		String endtimes = request.getParameter("endtime");
 		String leavereason = request.getParameter("leavereason");
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");

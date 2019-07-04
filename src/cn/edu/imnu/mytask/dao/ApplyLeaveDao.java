@@ -23,14 +23,16 @@ public class ApplyLeaveDao {
 			pstmt.setString(1, applyleave.getRealNumber());
 			pstmt.setString(2, applyleave.getRealName());
 			pstmt.setString(3, applyleave.getRealGrade());
-			pstmt.setTimestamp(4, applyleave.getStartTime()==null?null:new Timestamp(((Timestamp) applyleave.getStartTime()).getTime()));
-			pstmt.setTimestamp(5, applyleave.getEndTime()==null?null:new Timestamp(((Timestamp) applyleave.getEndTime()).getTime()));
+			//pstmt.setTimestamp(4, applyleave.getStartTime()==null?null:new Timestamp(((Timestamp) applyleave.getStartTime()).getTime()));
+			//pstmt.setTimestamp(5, applyleave.getEndTime()==null?null:new Timestamp(((Timestamp) applyleave.getEndTime()).getTime()));
+			pstmt.setDate(4, applyleave.getStartTime());
+			pstmt.setDate(5, applyleave.getEndTime());
 			pstmt.setString(6, applyleave.getTelephone());
 			pstmt.setString(7, applyleave.getLeaveReason());
 			pstmt.setInt(8, applicantID);
 			pstmt.executeUpdate();
 			
-			String sql2 = "SELECT leaverecord_id FROM tb_leavrecord WHERE applicant_id = ?";
+			String sql2 = "SELECT leaverecord_id FROM tb_leavrecord WHERE student_id = ?";
 			pstmt = conn.prepareStatement(sql2);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next())
@@ -57,6 +59,15 @@ public class ApplyLeaveDao {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, applicantID);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.closeJDBC(null, pstmt, conn);
 		}
 		return applyleave;
 	}

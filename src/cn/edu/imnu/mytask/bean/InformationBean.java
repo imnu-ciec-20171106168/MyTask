@@ -6,16 +6,17 @@ public class InformationBean {
 	private int applicantId;
 	private String applicantEmail;
 	private String applicantPwd;
-	private Date applicantRegistDate;
+	private int loginTag;
 	public InformationBean() {
 		super();
 	}
 
-	public InformationBean(int applicantId, String applicantEmail, String applicantPwd) {
+	public InformationBean(int applicantId, String applicantEmail, String applicantPwd, int loginTag) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantEmail = applicantEmail;
 		this.applicantPwd = applicantPwd;
+		this.loginTag = loginTag;
 		
 		
 	}
@@ -37,10 +38,10 @@ public class InformationBean {
 	public void setApplicantPwd(String applicantPwd) {
 		this.applicantPwd = applicantPwd;
 	}
-	public Date getApplicantRegistDate() {
-		return applicantRegistDate;
+	public int getloginTag() {
+		return loginTag;
 	}
-	public void setApplicantRegistDate(Date applicantRegistDate) {
-		this.applicantRegistDate = applicantRegistDate;
+	public void setloginTag(int loginTag) {
+		this.loginTag = loginTag;
 	}
 }
