@@ -10,6 +10,7 @@ import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.util.DBUtil;
 
 public class ApplyLeaveDao {
+	@SuppressWarnings("resource")
 	public  int add(ApplyLeaveBean applyleave, int applicantID) {
 		// TODO Auto-generated method stub
 		int leaverecordID=0;
@@ -47,5 +48,16 @@ public class ApplyLeaveDao {
 			DBUtil.closeJDBC(null, pstmt, conn);
 		}
 		return leaverecordID;
+	}
+	
+	public ApplyLeaveBean selectApplyLeaveByID(int applicantID) {
+		ApplyLeaveBean applyleave = new ApplyLeaveBean(null, null, null, null, null, null, null);
+		String sql = "SELECT * FROM tb_leaverecord WHERE login_number = ?";
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+		}
+		return applyleave;
 	}
 }

@@ -87,7 +87,7 @@
 		<div class="success_right">
 			<p class="green16">欢迎来到学生请假管理系统！</p>
 			<p>
-				<a href="applyleave.jsp"><span class="tn-button">学生申请请假</span></a>
+				<a href="Bootstrp.jsp"><span class="tn-button">学生申请请假</span></a>
 				<a href="applycancel.jsp"><span class="tn-button">学生申请销假</span></a>
 				<a href="queryrecord.jsp"><span class="tn-button">查询请假记录</span></a>
 			</p>
