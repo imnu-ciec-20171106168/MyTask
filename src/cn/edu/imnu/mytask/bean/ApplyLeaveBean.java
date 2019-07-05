@@ -10,8 +10,10 @@ public class ApplyLeaveBean {
 	private Date starttime;
 	private Date endtime;
 	private String telephone;
+	private String operate1;
+	private String operate2;
 	private String leavereason;	
-	public ApplyLeaveBean(String realnumber, String realname, String realgrade, Date starttime, Date endtime, String telephone, String leavereason) 
+	public ApplyLeaveBean(String realnumber, String realname, String realgrade, Date starttime, Date endtime, String telephone, String operate1, String operate2, String leavereason) 
 	{
 		// TODO Auto-generated constructor stub
 		super();
@@ -21,7 +23,10 @@ public class ApplyLeaveBean {
 		this.starttime = starttime;
 		this.endtime = endtime;
 		this.telephone = telephone;
+		this.operate1 = operate1;
+		this.operate2 = operate2;
 		this.leavereason = leavereason;
+		
 	}
 	
 	public String getRealNumber() {
@@ -76,6 +81,24 @@ public class ApplyLeaveBean {
 
 	public void setTelephone(String telephone) {
 		this.telephone = telephone;
+	}
+	
+	public String getOperate1() {
+		// TODO Auto-generated method stub
+		return operate1;
+	}
+
+	public void setOperate1(String operate1) {
+		this.operate1 = operate1;
+	}
+	
+	public String getOperate2() {
+		// TODO Auto-generated method stub
+		return operate1;
+	}
+
+	public void setOperate2(String operate2) {
+		this.operate2 = operate2;
 	}
 	
 	public String getLeaveReason() {

@@ -62,7 +62,7 @@ public class ApplyLeaveServlet extends HttpServlet {
 			ApplyLeaveBean applyleave = dao.selectApplyLeaveByID(applicant.getApplicantId());
 			//将请假记录基本信息存入request对象进行封装
 			request.setAttribute("applyleave", applyleave);
-			request.getRequestDispatcher("applycant/queryrecord.jsp").forward(request, response);
+			request.getRequestDispatcher("applycant/queryrecord.jsp").forward(request, response); 
 		}
 	}
 	
@@ -75,6 +75,8 @@ public class ApplyLeaveServlet extends HttpServlet {
 		String telephone = request.getParameter("telephone");
 		String startimes = request.getParameter("starttime");
 		String endtimes = request.getParameter("endtime");
+		String operate1 = "";
+		String operate2 = "";
 		String leavereason = request.getParameter("leavereason");
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
 	    Date startime = null;
@@ -91,7 +93,7 @@ public class ApplyLeaveServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			endtime = null;
 		}
-		applyleave = new ApplyLeaveBean(realnumber,realname,realgrade,startime,endtime,telephone,leavereason);
+		applyleave = new ApplyLeaveBean(realnumber,realname,realgrade,startime,endtime,telephone,operate1,operate2,leavereason);
 		return applyleave;
 	}
 

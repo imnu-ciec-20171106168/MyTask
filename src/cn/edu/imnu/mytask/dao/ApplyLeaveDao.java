@@ -11,7 +11,7 @@ public class ApplyLeaveDao {
 	public  int add(ApplyLeaveBean applyleave, int applicantID) {
 		// TODO Auto-generated method stub
 		int leaverecordID=0;
-		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,leavereson,student_id)VALUES(?,?,?,?,?,?,?,?)";
+		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,leavereason,student_id)VALUES(?,?,?,?,?,?,?,?)";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		try {
@@ -49,8 +49,8 @@ public class ApplyLeaveDao {
 	}
 	
 	public ApplyLeaveBean selectApplyLeaveByID(int applicantID) {
-		ApplyLeaveBean applyleave = new ApplyLeaveBean(null, null, null, null, null, null, null);
-		String sql = "SELECT * FROM tb_leaverecord WHERE login_number = ?";
+		ApplyLeaveBean applyleave = new ApplyLeaveBean(null, null, null, null, null, null, null, null, null);
+		String sql = "SELECT * FROM tb_leaverecord WHERE student_id = ?";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		try {
@@ -64,6 +64,8 @@ public class ApplyLeaveDao {
 				applyleave.setStartTime(rs.getDate("starttime"));
 				applyleave.setEndTime(rs.getDate("endtime"));
 				applyleave.setTelephone(rs.getString("telephone"));
+				applyleave.setOperate1("operate1");
+				applyleave.setOperate2("operate2");
 				applyleave.setLeaveReason(rs.getString("leavereason"));
 			}
 		} catch (SQLException e) {
