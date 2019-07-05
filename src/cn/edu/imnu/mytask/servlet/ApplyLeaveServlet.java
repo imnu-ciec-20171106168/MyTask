@@ -35,7 +35,8 @@ public class ApplyLeaveServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		this.doPost(request, response);
 	}
 
 	/**
@@ -45,20 +46,22 @@ public class ApplyLeaveServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		String type = request.getParameter("type");
-		if("add".equals(type)) {
+		ApplyLeaveDao dao=new ApplyLeaveDao();
+		if("add".equals(type)) 
+		{
 			ApplyLeaveBean applyleave = this.requestDataObj(request);
 			InformationBean applicant=(InformationBean)request.getSession().getAttribute("SESSION_APPLICANT");
-			ApplyLeaveDao dao=new ApplyLeaveDao();
 			int leaverecordID=dao.add(applyleave,applicant.getApplicantId());
 			request.getSession().setAttribute("SESSION_RESUMEID", leaverecordID);
-			response.sendRedirect("queryrecord.jsp");
+			response.sendRedirect("applysucceed.jsp");
 		}
+		response.sendRedirect("applysucceed.jsp");
 		
-		if("select".equals(type)) {
+		if("select".equals(type)) 
+		{
 			//从会话对象中获取当前登录学生的学号
 			InformationBean applicant =(InformationBean)request.getSession().getAttribute("SESSION_APPLICANT");
 			//根据学生的学号查询请假记录的基本信息
-			ApplyLeaveDao dao = new ApplyLeaveDao();
 			ApplyLeaveBean applyleave = dao.selectApplyLeaveByID(applicant.getApplicantId());
 			//将请假记录基本信息存入request对象进行封装
 			request.setAttribute("applyleave", applyleave);
@@ -79,11 +82,14 @@ public class ApplyLeaveServlet extends HttpServlet {
 		String operate2 = "已销假";
 		String leavereason = request.getParameter("leavereason");
 		SimpleDateFormat sdf= new SimpleDateFormat("yyyy-MM-dd");
-	    Date startime = null;
+	    Date startime = null;    
 		try {
 			startime = (Date) sdf.parse(startimes);
+			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			System.out.println(startimes);
+			e.printStackTrace();
 			startime = null;
 		}
 		Date endtime = null;
@@ -91,6 +97,7 @@ public class ApplyLeaveServlet extends HttpServlet {
 			endtime = (Date) sdf.parse(endtimes);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
 			endtime = null;
 		}
 		applyleave = new ApplyLeaveBean(realnumber,realname,realgrade,startime,endtime,telephone,operate1,operate2,leavereason);

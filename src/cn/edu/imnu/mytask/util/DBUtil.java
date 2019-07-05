@@ -6,12 +6,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.sql.*;
 public class DBUtil {
 	static String name="root";
 	static String password="123456";
 	static String url ="jdbc:mysql://localhost:3306/orcl?characterEncoding=UTF-8";
-	
+	static Connection conn = null;
+	static ResultSet rs = null;
+	static PreparedStatement ps = null;
 	static{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -20,6 +22,7 @@ public class DBUtil {
 			e.printStackTrace();
 		}
 	}
+	
 public static Connection getConnection(){
 	Connection conn=null;
 	try {
@@ -58,6 +61,18 @@ public static void closeJDBC(ResultSet result, Statement stmt, Connection conn) 
 		}
 	}
 }
+
+	public static int addUpdDel(String sql) {
+		int i = 0;
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			i = ps.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("sql数据库增删改异常");
+			e.printStackTrace();
+		}
+		return i;
+	}
 
 public static void runTest() throws SQLException,IOException{
 	Connection conn=getConnection();

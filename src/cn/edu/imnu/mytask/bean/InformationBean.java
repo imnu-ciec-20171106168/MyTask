@@ -1,7 +1,5 @@
 package cn.edu.imnu.mytask.bean;
-
 import java.util.Date;
-
 public class InformationBean {
 	private int applicantId;
 	private String applicantEmail;
@@ -10,15 +8,12 @@ public class InformationBean {
 	public InformationBean() {
 		super();
 	}
-
 	public InformationBean(int applicantId, String applicantEmail, String applicantPwd, int loginTag) {
 		super();
 		this.applicantId = applicantId;
 		this.applicantEmail = applicantEmail;
 		this.applicantPwd = applicantPwd;
-		this.loginTag = loginTag;
-		
-		
+		this.loginTag = loginTag;		
 	}
 	public int getApplicantId() {
 		return applicantId;

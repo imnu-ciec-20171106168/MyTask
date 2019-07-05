@@ -11,7 +11,7 @@
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<form action="ApplyLeaveServlet?type=add" method="post" onsubmit="return validate();">
+<form action="ApplyLeaveServlet?type=add" method="post" >
 <div class="container">
     <div class="jumbotron">
         <h1 align="center">个人信息统计</h1>

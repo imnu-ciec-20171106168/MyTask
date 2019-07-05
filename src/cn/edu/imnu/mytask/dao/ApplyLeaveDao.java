@@ -11,7 +11,7 @@ public class ApplyLeaveDao {
 	public  int add(ApplyLeaveBean applyleave, int applicantID) { 
 		// TODO Auto-generated method stub
 		int leaverecordID=0;
-		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,operate1,operate2,leavereason,student_id)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql="insert into tb_leaverecord(realnumber,realname,realgrade,starttime,endtime,telephone,operate1,operate2,leavereason,student_id)VALUES(?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		try {

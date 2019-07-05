@@ -1,12 +1,9 @@
 package cn.edu.imnu.mytask.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import cn.edu.imnu.mytask.util.DBUtil;
-
 public class InformationDao {
 	public int login(String email, String password) {
 		// TODO Auto-generated method stub
@@ -56,5 +53,15 @@ public class InformationDao {
 			DBUtil.closeJDBC(rs, pstmtTAG, conn);
 		}
 		return tags;
+	}
+
+	public boolean isExistEmail(String email) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public void save(String email, String password) {
+		// TODO Auto-generated method stub
+		
 	}
 }

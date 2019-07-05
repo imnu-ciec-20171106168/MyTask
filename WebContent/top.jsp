@@ -18,7 +18,7 @@
 
 	<div class="top_main">
 		<div class="top_logo">
-			<img src="images/main_logo.png" />
+			<img src="images/logo1.png" />
 		</div>
 		<div class="top_instr">学生请假管理系统</div>
 		<div class="top_tel">

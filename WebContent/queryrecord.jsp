@@ -66,7 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<c:forEach var="U" items="${userAll}">
 				<tr>
 					<td><input type="text" style="height:80px;width:140px" id="realnumber"  value="${U.realnumber}" name="realnumber"></td>
-					<jsp:getProperty property="realnumber" name="applyleave"/>
+					
 					<td><input type="text" style="height:80px;width:140px" id="realname" value="${U.realname}" name="realname"></td>
 					<td><input type="text" style="height:80px;width:140px" id="realgrade" value="${U.realgrade}" name="realgrade"></td>
 					<td><input type="text" style="height:80px;width:140px" id="starttime" value="${U.starttime}" name="starttime"></td>
