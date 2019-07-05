@@ -9,9 +9,7 @@
 <link href="css/login.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-<a href = "ApplyLeaveServlet?type = select">
-<span class = "tn-button" > 学生申请请假</span>
-</a>
+
 <style>
 .success_content {
 	width: 1000px;
@@ -89,7 +87,7 @@
 			<p>
 				<a href="Bootstrp.jsp"><span class="tn-button">学生申请请假</span></a>
 				<a href="applycancel.jsp"><span class="tn-button">学生申请销假</span></a>
-				<a href="queryrecord.jsp"><span class="tn-button">查询请假记录</span></a>
+				<a href="queryrecord.jsp"><span class="tn-button">请假记录信息</span></a>
 			</p>
 		</div>
 		<div class="clear"></div>

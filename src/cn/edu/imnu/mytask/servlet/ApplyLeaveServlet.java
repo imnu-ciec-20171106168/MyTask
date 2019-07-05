@@ -51,7 +51,18 @@ public class ApplyLeaveServlet extends HttpServlet {
 			ApplyLeaveDao dao=new ApplyLeaveDao();
 			int leaverecordID=dao.add(applyleave,applicant.getApplicantId());
 			request.getSession().setAttribute("SESSION_RESUMEID", leaverecordID);
-			response.sendRedirect("resume.jsp");
+			response.sendRedirect("applysucceed.jsp");
+		}
+		
+		if("select".equals(type)) {
+			//从会话对象中获取当前登录学生的学号
+			InformationBean applicant =(InformationBean)request.getSession().getAttribute("SESSION_APPLICANT");
+			//根据学生的学号查询请假记录的基本信息
+			ApplyLeaveDao dao = new ApplyLeaveDao();
+			ApplyLeaveBean applyleave = dao.selectApplyLeaveByID(applicant.getApplicantId());
+			//将请假记录基本信息存入request对象进行封装
+			request.setAttribute("applyleave", applyleave);
+			request.getRequestDispatcher("applycant/queryrecord.jsp").forward(request, response);
 		}
 	}
 	

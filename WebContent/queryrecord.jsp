@@ -1,27 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="cn.edu.imnu.mytask.bean.InformationBean"%>
+<%@ page import="cn.edu.imnu.mytask.dao.ApplyLeaveDao ,cn.edu.imnu.mytask.bean.ApplyLeaveBean ,cn.edu.imnu.mytask.bean.InformationBean" %>    
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bootstrap 实例</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>  
 <link href="css/base.css" type="text/css" rel="stylesheet" />
 <link href="css/my_resume.css" type="text/css" rel="stylesheet" />
 <meta content="大学生求职,大学生就业,大学生招聘,IT人才,IT人才招聘,大学生名企招聘,,大学生找工作,IT名企招聘，IT行业招聘，IT企业快速入职" name="keywords">
 <meta content="锐聘专注于为企业提供高效的人力资源解决方案，同时面向IT类技术人才推出快速一站式免费就业服务。秉承QST青软实训人才服务理念，为数千家企业量身定做个性化、全程化的人才培养体系，同时帮助中高级人才铺设成功之路，为人才和企业架设起沟通之桥。" name="description">
 </head>
 <body>
-<jsp:include page=" ../top.jsp"></jsp:include>
-< jsp:useBean id="
 <iframe src="top.jsp" width="100%" height="100"  scrolling="no" frameborder="0" ></iframe>
+
+<!-- 从request对象中获取一个JavaBean对象 -->
+<jsp:include page="../top.jsp"></jsp:include>
+<jsp:useBean id="applyleave" class="cn.edu.imnu.mytask.bean.ApplyLeaveBean" scope="request"></jsp:useBean>
+
 <div class="resume_con">
 	<!--tab设置-->
 	<div class="user_operate">
 		<ul style="float:left">
-			<li><a href="applyleave.jsp" >学生申请请假</a></li>
+			<li><a href="Bootstrp.jsp">学生申请请假</a></li>
 			<li><a href="applycancel.jsp">学生申请销假</a></li>
-			<li><a href=queryrecord.jsp" class="active">查询请假记录</a></li>
+			<li><a href="ApplyLeaveServlet?type=select" class="active">查询请假记录</a></li>
 			<div class="clear"></div>
 		</ul>
 		<div class="clear"></div>
@@ -32,307 +39,76 @@
 	    <div class="resume_left">
 			<div class="resume_title">
 				<div style="float:left">学生端</div>
-			<div class="all_resume">
-				<div class="table_style">
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">姓名：</th>
-					 	<td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+			</div>
+			<div class="all_resume" style="text=align:center;" align="center">
+			<form action="ApplyLeaveServlet?type=add" method="post" onsubmit="return validate();">
+
+        <h1 align="center">个人信息统计</h1>
+        <p align="center">在这里提交你的信息</p>
+    </div>
+    
+    <div class="row" align="center">
+		<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">学生学号</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="realnumber" name="realnumber"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">性别：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+					
+					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">学生姓名</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="realname" name="realname"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">出生日期：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+
+					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">学生班级</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="realgrade" name="realgrade"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">手机：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+     	    
+     	    <table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">联系电话</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="telephone" name="telephone"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">邮件：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+					
+					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">起始日期</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="starttime" name="starttime"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">求职意向：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
+					
+					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
+						<th width="110" align="canter" bgcolor="#F8F8F8">结束日期</th>
+						<td bgcolor="#F8F8F8" align ="center">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="endtime" name="endtime"></td>
+					  	</tr>
 					</table>
-					<div class="he"></div>
-					<table width="300" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-					  <tr>
-					    <th width="110" align="right" bgcolor="#F8F8F8">工作经验：</th>
-					    <td bgcolor="#F8F8F8" align ="left"></td>
-					  </tr>
-					</table>
-					<div class="he"></div>
-				</div>
-				<div style="float:right" class="uploade"><img src="images/person_img.jpg">
-					<div align="center">
-						<a href="resumeBasicInfoPicUpload.jsp" class="uploade_btn">更换照片</a>
-					</div>
-				</div>
-				<div class="clear"></div>
-			</div>
-			<div class="resume_title">
-				<div style="float:left">教育经历</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                毕业院校</p>
-			            <p class="tn-date">
-			                就读时间</p>
-			            <p class="tn-degree">
-			                学历</p>
-			            <p class="tn-fieldofstudy">
-			                专业</p>
-			        </li>
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-name" title="青软实训">
-			                青软实训                   
-			            </p>
-			            <p class="tn-date">2013/10-2014/10</p>
-			            <p class="tn-degree" title="">
-			                 本科&nbsp;
-			            </p>
-			            <p class="tn-fieldofstudy" title="软件工程">
-			                软件工程&nbsp;
-			            </p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-				</ul>
-			</div>
+     	    
+        <div class="panel panel-info" style="width: 480px">
+            <div class="panel-heading">
+                <h3 class="panel-title" align="center">请假原因</h3>
+            </div>
+            <textarea class="form-control" rows="4" style="resize: none;height: 100%;width: 100%" name="leavereson" ></textarea>
+        </div>
 
-			<div class="resume_title">
-				<div style="float:left">工作经历</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                工作公司	</p>
-			            <p class="tn-date">
-			                在职时间</p>
-			            <p class="tn-degree">
-			                部门</p>
-			            <p class="tn-fieldofstudy">
-			                职位名称</p>
-			        </li>
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-name" title="青软实训">
-			                青软实训                   
-			            </p>
-			            <p class="tn-date">2013/10-2014/10</p>
-			            <p class="tn-degree" title="">
-			                 研发部
-			            </p>
-			            <p class="tn-fieldofstudy" title="软件工程">
-			                软件开发工程师
-			            </p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-		       
-				</ul>
-			</div>
-
-			<div class="resume_title">
-				<div style="float:left">项目经验</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                项目名称	</p>
-			            <p class="tn-date">
-			                参与时间</p>
-			            <p class="tn-degree">
-			                担任职位</p>
-			        </li>
-					    
-		       
-				</ul>
-			</div>
-			<div class="resume_title">
-				<div style="float:left">培训经历</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                培训名称	</p>
-			            <p class="tn-date">
-			                培训时间</p>
-			            
-			        </li>
-
-		       
-				</ul>
-			</div>
-			<div class="resume_title">
-				<div style="float:left">获得证书</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                证书名称	</p>
-			            
-			        </li>
-
-		       
-				</ul>
-			</div>
-			<div class="resume_title">
-				<div style="float:left">语言能力</div>
-				<div class="btn">添加</div>
-			</div>
-
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-			                语言	</p>
-			            <p class="tn-date">
-			                听说</p>
-			            <p class="tn-degree">
-			                读写</p>
-			            <p class="tn-fieldofstudy">
-			                等级考试</p>
-			        </li>
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-name" title="英语">
-			                英语                   
-			            </p>
-			            <p class="tn-date">熟练</p>
-			            <p class="tn-degree" title="">
-			                 熟练
-			            </p>
-			            <p class="tn-fieldofstudy" title="CET-6">
-			                CET-6
-			            </p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-		       
-				</ul>
-			</div>	
-			<div class="resume_title">
-				<div style="float:left">IT技能</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-						<p class="tn-auto">
-		                技能名称</p>
-
-			            <p class="tn-name">
-		                熟练程度</p>
-			        </li>
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-auto">
-		                    Oracle</p>
-			            <p class="tn-name">
-		                    熟练</p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-auto">
-		                    JavaEE</p>
-			            <p class="tn-name">
-		                    熟练</p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-					<li class="tn-border-gray tn-border-bottom">
-			            <p class="tn-auto">
-		                    Java</p>
-			            <p class="tn-name">
-		                    熟练</p>
-			            <span class="tn-actions"><a href="#" class="tn-action tn-action-text-icon">
-			            <span class="tn-icon it-icon-modify"></span><span class="tn-action-text">修改</span>
-			            </a>
-			            <a href="" class="tn-action tn-action-text-icon tn-delete">
-			            <span class="tn-icon it-icon-delete"></span><span class="tn-action-text">删除</span>
-			            </a></span></li>    
-		       
-				</ul>
-			</div>	
-			<div class="resume_title">
-				<div style="float:left">其他信息</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-		    	<ul>
-			        <li class="tn-border-gray tn-border-bottom it-table-grid-header">
-			            <p class="tn-name">
-		                标题</p>
-			            <p class="tn-auto">
-		                描述</p>
-			        </li>
-
-
-		       
-				</ul>
-			</div>
-			<div class="resume_title">
-				<div style="float:left">简历附件</div>
-				<div class="btn">添加</div>
-			</div>
-			<div class="it-table-grid">
-				<div class="it-table-grid">
-					暂无附件！</div>
-			</div>	
-
-		
-	    </div>
-    	<!--右边-->
-		<iframe src="resume_right.jsp" width="290" height="650"  scrolling="no" frameborder="0"></iframe>
-
-		<div style="clear:both"></div>
-	</div>
+        <div>
+           
+            <input name="" type="submit" class="save1" value="提交"> 
+			<input name="" type="reset" class="cancel2" value="取消">
+        </div>
+    </div>
 </div>
 <iframe src="foot.jsp" width="100%" height="150"  scrolling="no" frameborder="0" ></iframe>
 </body>

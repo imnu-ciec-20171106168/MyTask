@@ -45,7 +45,7 @@
 		<ul style="float:left">
 			<li><a href="applyleave.jsp" class="active">学生申请请假</a></li>
 			<li><a href="applycancel.jsp">学生申请销假</a></li>
-			<li><a href=queryrecord.jsp">查询请假记录</a></li>
+			<li><a href="queryrecord.jsp">请假记录信息</a></li>
 			<div class="clear"></div>
 		</ul>
 		<div class="clear"></div>

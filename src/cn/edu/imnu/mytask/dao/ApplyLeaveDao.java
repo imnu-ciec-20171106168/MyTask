@@ -1,14 +1,11 @@
 package cn.edu.imnu.mytask.dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-
 import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.util.DBUtil;
-
 public class ApplyLeaveDao {
 	@SuppressWarnings("resource")
 	public  int add(ApplyLeaveBean applyleave, int applicantID) {
@@ -30,8 +27,7 @@ public class ApplyLeaveDao {
 			pstmt.setString(6, applyleave.getTelephone());
 			pstmt.setString(7, applyleave.getLeaveReason());
 			pstmt.setInt(8, applicantID);
-			pstmt.executeUpdate();
-			
+			pstmt.executeUpdate();	
 			String sql2 = "SELECT leaverecord_id FROM tb_leavrecord WHERE student_id = ?";
 			pstmt = conn.prepareStatement(sql2);
 			ResultSet rs = pstmt.executeQuery();
@@ -62,7 +58,13 @@ public class ApplyLeaveDao {
 			pstmt.setInt(1, applicantID);
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				
+				applyleave.setRealNumber(rs.getString("realnumber"));
+				applyleave.setRealName(rs.getString("realname"));
+				applyleave.setRealGrade(rs.getString("realgrade"));
+				applyleave.setStartTime(rs.getDate("starttime"));
+				applyleave.setEndTime(rs.getDate("endtime"));
+				applyleave.setTelephone(rs.getString("telephone"));
+				applyleave.setLeaveReason(rs.getString("leavereason"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
