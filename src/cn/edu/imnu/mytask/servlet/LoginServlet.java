@@ -50,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 		InformationDao dao = new InformationDao();
 		int applicantID = dao.login(email,password);
 		int tags = dao.logintag(email, password);
-		
 		if(applicantID != 0) {
 			if(tags == 1)
 			{

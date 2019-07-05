@@ -97,4 +97,28 @@ public class InformationDao {
 			DBUtil.closeJDBC(null, pstmt, conn);
 		}
 	}
+	
+	public boolean isExistInformation(String student_number) {
+		// TODO Auto-generated method stub
+		String sql = "select * from tb_student where student_number = ?";	
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, student_number);
+			
+			result = pstmt.executeQuery();
+			if (result.next()) {
+				return true;
+		}
+	}catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		DBUtil.closeJDBC(result, pstmt, conn);
+	}
+		return false;
+	}
 }
+
+

@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Bootstrap 实例</title>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -19,9 +18,9 @@
 		var realnumber = document.getElementById("realnumber");
 		var realname = document.getElementById("realname");
 		var realgrade = document.getElementById("realgrade");
+		var realsex = document.getElementById("realsex");
 		var telephone = document.getElementById("telephone");
-		var starttime = document.getElementById("starttime");
-		var endtime = document.getElementById("endtime");
+		var dormitory = document.getElementById("dormitory");
 		if(realnumber.value == ""){
 			alert("学号不能为空！");
 			realname.focus();
@@ -37,18 +36,18 @@
 			realname.focus();
 			return false;
 		}
+		if(realsex.value == ""){
+			alert("性别不能为空！");
+			realname.focus();
+			return false;
+		}
 		if(telephone.value == ""){
 			alert("手机号不能为空！");
 			telephone.focus();
 			return false;
 		}
-		if(starttime.value == ""){
-			alert("起始日期不能为空！");
-			realname.focus();
-			return false;
-		}
-		if(endtime.value == ""){
-			alert("结束日期不能为空！");
+		if(dormitory.value == ""){
+			alert("宿舍楼不能为空！");
 			realname.focus();
 			return false;
 		}
@@ -61,27 +60,15 @@
 <iframe src="top.jsp" width="100%" height="100"  scrolling="no" frameborder="0" ></iframe>
 <div class="resume_con">
 	<!--tab设置-->
-	<div class="user_operate">
-		<ul style="float:left">
-			<li><a href="Bootstrp.jsp" class="active">学生申请请假</a></li>
-			<li><a href="applycancel.jsp">学生申请销假</a></li>
-			<li><a href="queryrecord.jsp">请假记录信息</a></li>
-			<div class="clear"></div>
-		</ul>
-		<div class="clear"></div>
-	</div>
     <!--主体部分-->
     <div class="resume_main">
     	<!--左边-->
 	    <div class="resume_left">
-			<div class="resume_title">
-				<div style="float:left">学生端</div>
-			</div>
 			<div class="all_resume" style="text=align:center;" align="center">
-			<form action="ApplyLeaveServlet?type=add" method="post" onsubmit="return validate();">
+			<form action="StudentServlet" method="post" onsubmit="return validate();">
 
-        <h1 align="center">请假信息统计</h1>
-        <p align="center">在这里提交你的请假信息</p>
+        <h1 align="center">个人信息统计</h1>
+        <p align="center">在这里提交你的个人信息</p>
     </div>
     
     <div class="row" align="center">
@@ -111,6 +98,14 @@
      	    
      	    <table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
 						<tr>
+						<th width="110" align="right" bgcolor="#F8F8F8">性        别</th>
+						<td bgcolor="#F8F8F8" align ="left">
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="realsex" name="realsex"></td>
+					  	</tr>
+					</table>
+     	    
+     	    <table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
+						<tr>
 						<th width="110" align="right" bgcolor="#F8F8F8">联系电话</th>
 						<td bgcolor="#F8F8F8" align ="left">
    							<input type="text" class="form-control" style="height:36px;width:420px" id="telephone" name="telephone"></td>
@@ -119,26 +114,11 @@
 					
 					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
 						<tr>
-						<th width="110" align="right" bgcolor="#F8F8F8">起始日期</th>
+						<th width="110" align="right" bgcolor="#F8F8F8">宿        舍</th>
 						<td bgcolor="#F8F8F8" align ="left">
-   							<input type="text" class="form-control" style="height:36px;width:420px" id="starttime" name="starttime"></td>
+   							<input type="text" class="form-control" style="height:36px;width:420px" id="dormitory" name="dormitory"></td>
 					  	</tr>
 					</table>
-					
-					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-						<tr>
-						<th width="110" align="canter" bgcolor="#F8F8F8">结束日期</th>
-						<td bgcolor="#F8F8F8" align ="center">
-   							<input type="text" class="form-control" style="height:36px;width:420px" id="endtime" name="endtime"></td>
-					  	</tr>
-					</table>
-     	    
-        <div class="panel panel-info" style="width: 480px">
-            <div class="panel-heading">
-                <h3 class="panel-title" align="center">请假原因</h3>
-            </div>
-            <textarea class="form-control" rows="4" style="resize: none;height: 100%;width: 100%" name="leavereson" ></textarea>
-        </div>
 
         <div>
            

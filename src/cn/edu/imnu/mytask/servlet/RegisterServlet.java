@@ -44,11 +44,11 @@ public class RegisterServlet extends HttpServlet {
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		String channel=request.getParameter("channel");
-		if(channel=="")
+		if("学生".equals(channel))
 		{
 			tags=1;
 		}
-		else if(channel=="") {
+		else if("老师".equals(channel)) {
 			tags=2;
 		}
 		InformationDao dao = new InformationDao();
