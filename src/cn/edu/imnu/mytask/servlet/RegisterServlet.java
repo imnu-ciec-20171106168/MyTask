@@ -40,9 +40,17 @@ public class RegisterServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		
+		int tags = 0;
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
+		String channel=request.getParameter("channel");
+		if(channel=="")
+		{
+			tags=1;
+		}
+		else if(channel=="") {
+			tags=2;
+		}
 		InformationDao dao = new InformationDao();
 		boolean flag=dao.isExistEmail(email);
 		if(flag)
@@ -52,7 +60,7 @@ public class RegisterServlet extends HttpServlet {
 			out.print("window.location='register.jsp';");
 			out.print("</script>");
 		}else {
-			dao.save(email,password);
+			dao.save(email,password,tags);
 			response.sendRedirect("login.jsp");
 			
 		}

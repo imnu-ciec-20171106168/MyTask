@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -57,12 +58,19 @@ public class ApplyLeaveServlet extends HttpServlet {
 		}
 		response.sendRedirect("applysucceed.jsp");
 		
+		ApplyLeaveDao ad = new ApplyLeaveDao();
+		List<ApplyLeaveBean> userAll = ad.selectApplyLeaveByID();
+		request.setAttribute("userAll", userAll);
+		request.getRequestDispatcher("/showall.jsp").forward(request, response);
+
+		
+		
 		if("select".equals(type)) 
 		{
 			//从会话对象中获取当前登录学生的学号
 			InformationBean applicant =(InformationBean)request.getSession().getAttribute("SESSION_APPLICANT");
 			//根据学生的学号查询请假记录的基本信息
-			ApplyLeaveBean applyleave = dao.selectApplyLeaveByID(applicant.getApplicantId());
+			ApplyLeaveBean applyleave = (ApplyLeaveBean) dao.selectApplyLeaveByID(applicant.getApplicantId());
 			//将请假记录基本信息存入request对象进行封装
 			request.setAttribute("applyleave", applyleave);
 			request.getRequestDispatcher("applicant/queryrecord.jsp").forward(request, response); 

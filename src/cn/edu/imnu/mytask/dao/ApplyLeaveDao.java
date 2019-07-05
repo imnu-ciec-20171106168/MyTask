@@ -4,6 +4,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.util.DBUtil;
 public class ApplyLeaveDao {
@@ -32,10 +35,12 @@ public class ApplyLeaveDao {
 			pstmt.executeUpdate();	
 			String sql2 = "SELECT leaverecord_id FROM tb_leavrecord WHERE student_id = ?";
 			pstmt = conn.prepareStatement(sql2);
-			ResultSet rs = pstmt.executeQuery();
+			
+			/*ResultSet rs = pstmt.executeQuery();
 			if(rs.next())
 				leaverecordID = rs.getInt(1);
-			conn.commit();
+			*/conn.commit();
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			try {
@@ -50,8 +55,9 @@ public class ApplyLeaveDao {
 		return leaverecordID;
 	}
 	
-	public ApplyLeaveBean selectApplyLeaveByID(int applicantID) {
-		ApplyLeaveBean applyleave = new ApplyLeaveBean(null, null, null, null, null, null, null, null, null);
+	public List<ApplyLeaveBean> selectApplyLeaveByID(int applicantID) {
+		List <ApplyLeaveBean> list = new ArrayList<ApplyLeaveBean>();
+		ApplyLeaveBean applyleave = new ApplyLeaveBean();
 		String sql = "SELECT * FROM tb_leaverecord WHERE student_id = ?";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
@@ -70,11 +76,14 @@ public class ApplyLeaveDao {
 				applyleave.setOperate2("operate2");
 				applyleave.setLeaveReason(rs.getString("leavereason"));
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
 			DBUtil.closeJDBC(null, pstmt, conn);
+			return list;
 		}
-		return applyleave;
-	}
+		
+		catch (SQLException e) {
+			e.printStackTrace();
+		} finally {			
+		}
+		return null;
+	}	
 }

@@ -3,6 +3,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Date;
+
 import cn.edu.imnu.mytask.util.DBUtil;
 public class InformationDao {
 	public int login(String email, String password) {
@@ -57,11 +60,41 @@ public class InformationDao {
 
 	public boolean isExistEmail(String email) {
 		// TODO Auto-generated method stub
+		String sql = "select * from tb_login where login_number = ?";	
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			
+			result = pstmt.executeQuery();
+			if (result.next()) {
+				return true;
+		}
+	}catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		DBUtil.closeJDBC(result, pstmt, conn);
+	}
 		return false;
 	}
 
-	public void save(String email, String password) {
+	public void save(String email, String password, int tags) {
 		// TODO Auto-generated method stub
-		
+		String sql = "insert into tb_login(login_number,login_password,login_tag) values(?,?,?)";		
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			pstmt.setInt(3, tags);
+			pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeJDBC(null, pstmt, conn);
+		}
 	}
 }
