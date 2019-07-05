@@ -13,6 +13,9 @@ public class ApplyLeaveBean {
 	private String operate1;
 	private String operate2;
 	private String leavereason;	
+	public ApplyLeaveBean() {
+		
+	};
 	public ApplyLeaveBean(String realnumber, String realname, String realgrade, Date starttime, Date endtime, String telephone, String operate1, String operate2, String leavereason) 
 	{
 		// TODO Auto-generated constructor stub
@@ -94,7 +97,7 @@ public class ApplyLeaveBean {
 	
 	public String getOperate2() {
 		// TODO Auto-generated method stub
-		return operate1;
+		return operate2;
 	}
 
 	public void setOperate2(String operate2) {

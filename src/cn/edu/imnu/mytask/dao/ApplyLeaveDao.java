@@ -8,10 +8,10 @@ import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.util.DBUtil;
 public class ApplyLeaveDao {
 	@SuppressWarnings("resource")
-	public  int add(ApplyLeaveBean applyleave, int applicantID) {
+	public  int add(ApplyLeaveBean applyleave, int applicantID) { 
 		// TODO Auto-generated method stub
 		int leaverecordID=0;
-		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,leavereason,student_id)VALUES(?,?,?,?,?,?,?,?)";
+		String sql="insert into tb_leaverecord(leaverecord_id,realnumber,realname,realgrade,starttime,endtime,telephone,operate1,operate2,leavereason,student_id)VALUES(?,?,?,?,?,?,?,?,?,?,?)";
 		Connection conn = DBUtil.getConnection();
 		PreparedStatement pstmt = null;
 		try {
@@ -25,8 +25,10 @@ public class ApplyLeaveDao {
 			pstmt.setDate(4, applyleave.getStartTime());
 			pstmt.setDate(5, applyleave.getEndTime());
 			pstmt.setString(6, applyleave.getTelephone());
-			pstmt.setString(7, applyleave.getLeaveReason());
-			pstmt.setInt(8, applicantID);
+			pstmt.setString(7, applyleave.getOperate1());
+			pstmt.setString(8, applyleave.getOperate2());
+			pstmt.setString(9, applyleave.getLeaveReason());
+			pstmt.setInt(10, applicantID);
 			pstmt.executeUpdate();	
 			String sql2 = "SELECT leaverecord_id FROM tb_leavrecord WHERE student_id = ?";
 			pstmt = conn.prepareStatement(sql2);
