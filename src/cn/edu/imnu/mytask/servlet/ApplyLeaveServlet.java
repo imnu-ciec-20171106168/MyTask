@@ -56,14 +56,7 @@ public class ApplyLeaveServlet extends HttpServlet {
 			request.getSession().setAttribute("SESSION_RESUMEID", leaverecordID);
 			response.sendRedirect("applysucceed.jsp");
 		}
-		response.sendRedirect("applysucceed.jsp");
-		
-		ApplyLeaveDao ad = new ApplyLeaveDao();
-		List<ApplyLeaveBean> userAll = ad.selectApplyLeaveByID();
-		request.setAttribute("userAll", userAll);
-		request.getRequestDispatcher("/showall.jsp").forward(request, response);
-
-		
+		response.sendRedirect("applysucceed.jsp");	
 		
 		if("select".equals(type)) 
 		{

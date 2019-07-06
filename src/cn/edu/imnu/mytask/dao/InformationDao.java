@@ -6,9 +6,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.tomcat.jni.User;
 
+import cn.edu.imnu.mytask.bean.ApplyLeaveBean;
 import cn.edu.imnu.mytask.bean.InformationBean;
 import cn.edu.imnu.mytask.util.DBUtil;
 public class InformationDao {
@@ -195,8 +197,48 @@ public class InformationDao {
 
 	public void saveTeacherInformation(String realnumber, String realname, String realgrade, String realsex,
 			String telephone, int tags) {
-		// TODO Auto-generated method stub
+		String sql = "insert into tb_teacher(teacher_number,teacher_name,teacher_grade,teacher_sex,teacher_phone,teacher_tag) values(?,?,?,?,?,?,?)";		
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;	
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, realnumber);
+			pstmt.setString(2, realname);
+			pstmt.setString(3, realgrade);
+			pstmt.setString(4, realsex);
+			pstmt.setString(5, telephone);
+			pstmt.setInt(6, tags);
+			pstmt.executeUpdate();
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeJDBC(null, pstmt, conn);
+		}
 		
+	}
+	
+	
+	public int studentid(String studentnumber) {
+		// TODO Auto-generated method stub
+		int studentid = 0;
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmtid = null;
+		ResultSet rs = null;
+		String sql = "SELECT student_id FROM tb_student WHERE student_number = ?";
+		try {
+			pstmtid = conn.prepareStatement(sql);
+			pstmtid.setInt(1, studentid);
+			rs = pstmtid.executeQuery();
+			if(rs.next())
+				studentid = rs.getInt("student_id");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBUtil.closeJDBC(rs, pstmtid, conn);
+		}
+		return studentid;
 	}
 	
 }

@@ -9,7 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import cn.edu.imnu.mytask.dao.InformationDao;
 
@@ -47,6 +47,8 @@ public class LoginServlet extends HttpServlet {
 		PrintWriter out=response.getWriter();	
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
+		HttpSession session = request.getSession();
+		session.setAttribute("login_number", email);
 		InformationDao dao = new InformationDao();
 		int applicantID = dao.login(email,password);
 		int tags = dao.logintag(email, password);

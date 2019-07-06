@@ -22,6 +22,7 @@
 		var telephone = document.getElementById("telephone");
 		var starttime = document.getElementById("starttime");
 		var endtime = document.getElementById("endtime");
+		var leavereason = document.getElementById("leavereason");
 		if(realnumber.value == ""){
 			alert("学号不能为空！");
 			realname.focus();
@@ -52,6 +53,11 @@
 			realname.focus();
 			return false;
 		}
+		if(leavereason.value == ""){
+			alert("请假原因不能为空！");
+			leavereason.focus();
+			return false;
+		}
 		return true;
 	}	
 </script>
@@ -78,7 +84,7 @@
 				<div style="float:left">学生端</div>
 			</div>
 			<div class="all_resume" style="text=align:center;" align="center">
-			<form action="ApplyLeaveServlet?type=add" method="post" onsubmit="return validate();">
+			<form action="AskForLeaveServlet" method="post" onsubmit="return validate();">
 
         <h1 align="center">请假信息统计</h1>
         <p align="center">在这里提交你的请假信息</p>
@@ -137,7 +143,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title" align="center">请假原因</h3>
             </div>
-            <textarea class="form-control" rows="4" style="resize: none;height: 100%;width: 100%" name="leavereson" ></textarea>
+            <textarea class="form-control" rows="4" style="resize: none;height: 100%;width: 100%" id="leavereason" name="leavereason" ></textarea>
         </div>
 
         <div>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"  %>
-<%@ page import="cn.edu.imnu.mytask.dao.ApplyLeaveDao ,cn.edu.imnu.mytask.bean.ApplyLeaveBean ,cn.edu.imnu.mytask.bean.InformationBean" %>
-
+<%@ page import="cn.edu.imnu.mytask.dao.ApplyLeaveDao, cn.edu.imnu.mytask.bean.ApplyLeaveBean, cn.edu.imnu.mytask.bean.InformationBean" %>
+<%@ page import="java.util.ArrayList, java.util.List," %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,7 +23,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <meta content="锐聘专注于为企业提供高效的人力资源解决方案，同时面向IT类技术人才推出快速一站式免费就业服务。秉承QST青软实训人才服务理念，为数千家企业量身定做个性化、全程化的人才培养体系，同时帮助中高级人才铺设成功之路，为人才和企业架设起沟通之桥。" name="description">
 </head>
 <body>
-
+<%	
+	InformationBean information = new InformationBean();
+	int applicantID = information.getApplicantId();
+	ArrayList<ApplyLeaveBean> applyleaves = new ApplyLeaveDao().selectApplyLeaveByID(applicantID);
+%>
 <!-- 从request对象中获取一个JavaBean对象 -->
 <jsp:useBean id="applyleave" class="cn.edu.imnu.mytask.bean.ApplyLeaveBean" scope="request"></jsp:useBean>
 
