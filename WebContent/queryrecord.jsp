@@ -26,10 +26,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%	
 	InformationBean information = new InformationBean();
 	int applicantID = information.getApplicantId();
-	ArrayList<ApplyLeaveBean> applyleaves = new ApplyLeaveDao().selectApplyLeaveByID(applicantID);
+	ArrayList<ApplyLeaveBean> applyleaves = new ApplyLeaveDao().getAllApplyLeaveInfo();
+	if(applyleaves == null){
+		applyleaves = new ArrayList<>();
+	}	
 %>
-<!-- 从request对象中获取一个JavaBean对象 -->
-<jsp:useBean id="applyleave" class="cn.edu.imnu.mytask.bean.ApplyLeaveBean" scope="request"></jsp:useBean>
+
 
 <iframe src="top.jsp" width="100%" height="100"  scrolling="no" frameborder="0" ></iframe>
 <div class="resume_con">
@@ -53,9 +55,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
    
     <div class="row" align="center">
-		
-<h1>${xiaoxi}</h1>
 	<table width="60" border="1" cellpadding="0">
+	
+		<%
+		 	for(ApplyLeaveBean applyleave : applyleaves){
+		%>
 		<tr>
 			<th>学生学号</th>
 			<th>学生姓名</th>
@@ -63,14 +67,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<th>联系电话</th>
 			<th>起始日期</th>
 			<th>结束日期</th>
-			<th>请假原因</th>
 			<th>操作1</th>
 			<th>操作2</th>
+			<th>请假原因</th>
 		</tr>
-		<c:forEach var="U" items="${userAll}">
 				<tr>
 					<td><input type="text" style="height:80px;width:140px" id="realnumber"  value="${U.realnumber}" name="realnumber"></td>
-					
 					<td><input type="text" style="height:80px;width:140px" id="realname" value="${U.realname}" name="realname"></td>
 					<td><input type="text" style="height:80px;width:140px" id="realgrade" value="${U.realgrade}" name="realgrade"></td>
 					<td><input type="text" style="height:80px;width:140px" id="starttime" value="${U.starttime}" name="starttime"></td>
@@ -78,15 +80,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<td><input type="text" style="height:80px;width:140px" id="leavereason" value="${U.leavereason}" name="leavereason"></td>
 					<td><input type="text" style="height:80px;width:140px" id="operate1" value="${U.operate1}" name="operate1"></td>
 					<td><input type="text" style="height:80px;width:140px" id="operate2" value="${U.operate2}" name="operate2"></td>
-				</tr>
-		</c:forEach>
-		
-<%
- 
-%>		
-		
+				</tr>	
+				<% 
+		 			}
+				%>
 	</table>
-
 <iframe src="foot.jsp" width="100%" height="150"  scrolling="no" frameborder="0" ></iframe>
 </body>
 </html>
