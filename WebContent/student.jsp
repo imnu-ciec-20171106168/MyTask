@@ -83,7 +83,7 @@
 			<h3 align="center">登录成功！</h3>
 		</div>
 		<div class="success_right">
-			<p class="green16">欢迎来到学生请假管理系统！</p>
+			<p class="green16">欢迎来到学生客户端！</p>
 			<p>
 				<a href="Bootstrp.jsp"><span class="tn-button">学生申请请假</span></a>
 				<a href="applycancel.jsp"><span class="tn-button">学生申请销假</span></a>

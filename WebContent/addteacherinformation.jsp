@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>请假管理系统-学生客户端</title>
 <meta charset="UTF-8">
+<title>请假管理系统-老师客户端</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
@@ -21,7 +21,6 @@
 		var realgrade = document.getElementById("realgrade");
 		var realsex = document.getElementById("realsex");
 		var telephone = document.getElementById("telephone");
-		var dormitory = document.getElementById("dormitory");
 		if(realnumber.value == ""){
 			alert("学号不能为空！");
 			realname.focus();
@@ -47,11 +46,6 @@
 			telephone.focus();
 			return false;
 		}
-		if(dormitory.value == ""){
-			alert("宿舍楼不能为空！");
-			realname.focus();
-			return false;
-		}
 		return true;
 	}	
 </script>
@@ -66,7 +60,7 @@
     	<!--左边-->
 	    <div class="resume_left">
 			<div class="all_resume" style="text=align:center;" align="center">
-			<form action="StudentServlet" method="post" onsubmit="return validate();">
+			<form action="TeacherSevlet" method="post" onsubmit="return validate();">
 
         <h1 align="center">个人信息统计</h1>
         <p align="center">在这里提交你的个人信息</p>
@@ -75,7 +69,7 @@
     <div class="row" align="center">
 		<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
 						<tr>
-						<th width="110" align="right" bgcolor="#F8F8F8">学生学号</th>
+						<th width="110" align="right" bgcolor="#F8F8F8">老师学号</th>
 						<td bgcolor="#F8F8F8" align ="left">
    							<input type="text" class="form-control" style="height:36px;width:420px" id="realnumber" name="realnumber"></td>
 					  	</tr>
@@ -83,7 +77,7 @@
 					
 					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
 						<tr>
-						<th width="110" align="right" bgcolor="#F8F8F8">学生姓名</th>
+						<th width="110" align="right" bgcolor="#F8F8F8">老师姓名</th>
 						<td bgcolor="#F8F8F8" align ="left">
    							<input type="text" class="form-control" style="height:36px;width:420px" id="realname" name="realname"></td>
 					  	</tr>
@@ -91,7 +85,7 @@
 
 					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
 						<tr>
-						<th width="110" align="right" bgcolor="#F8F8F8">学生班级</th>
+						<th width="110" align="right" bgcolor="#F8F8F8">老师年级</th>
 						<td bgcolor="#F8F8F8" align ="left">
    							<input type="text" class="form-control" style="height:36px;width:420px" id="realgrade" name="realgrade"></td>
 					  	</tr>
@@ -110,14 +104,6 @@
 						<th width="110" align="right" bgcolor="#F8F8F8">联系电话</th>
 						<td bgcolor="#F8F8F8" align ="left">
    							<input type="text" class="form-control" style="height:36px;width:420px" id="telephone" name="telephone"></td>
-					  	</tr>
-					</table>
-					
-					<table width="480" border="0" cellpadding="3" cellspacing="1" bgcolor="#EEEEEE">
-						<tr>
-						<th width="110" align="right" bgcolor="#F8F8F8">宿        舍</th>
-						<td bgcolor="#F8F8F8" align ="left">
-   							<input type="text" class="form-control" style="height:36px;width:420px" id="dormitory" name="dormitory"></td>
 					  	</tr>
 					</table>
 

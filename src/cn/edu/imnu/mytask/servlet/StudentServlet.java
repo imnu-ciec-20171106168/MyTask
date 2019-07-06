@@ -54,8 +54,7 @@ public class StudentServlet extends HttpServlet {
 		{
 			response.sendRedirect("student.jsp");
 		}else {
-			response.sendRedirect("login.jsp");
-			
+			response.sendRedirect("login.jsp");		
 		}
 	}
 

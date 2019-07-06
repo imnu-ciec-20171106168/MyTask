@@ -119,6 +119,28 @@ public class InformationDao {
 	}
 		return false;
 	}
+	
+	public boolean isExistTeacherInformation(String teacher_number) {
+		// TODO Auto-generated method stub
+		String sql = "select * from tb_teacher where teacher_number = ?";	
+		Connection conn = DBUtil.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, teacher_number);
+			
+			result = pstmt.executeQuery();
+			if (result.next()) {
+				return true;
+		}
+	}catch (SQLException e) {
+		e.printStackTrace();
+	}finally {
+		DBUtil.closeJDBC(result, pstmt, conn);
+	}
+		return false;
+	}
 }
 
 

@@ -50,14 +50,28 @@ public class LoginServlet extends HttpServlet {
 		InformationDao dao = new InformationDao();
 		int applicantID = dao.login(email,password);
 		int tags = dao.logintag(email, password);
+		boolean flag = dao.isExistInformation(email);
+		boolean flag2 = dao.isExistTeacherInformation(email);
 		if(applicantID != 0) {
 			if(tags == 1)
-			{
-				response.sendRedirect("student.jsp");
+			{	
+				if(flag) {
+					response.sendRedirect("student.jsp");
+				}
+				else {
+					response.sendRedirect("addinformation.jsp");
+				}
+				
 			}
 			else if(tags == 2)
-			{
-				response.sendRedirect("teacher.jsp");
+			{	
+				
+				if(flag2) {
+					response.sendRedirect("teacher.jsp");
+				}
+				else {
+					response.sendRedirect("addtecherinformation.jsp");
+				}
 			}
 		}else {
 			out.print("<script type='text/javascript'>");
