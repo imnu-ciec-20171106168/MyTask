@@ -74,7 +74,7 @@ public static void closeJDBC(ResultSet result, Statement stmt, Connection conn) 
 		return i;
 	}
 
-public static void runTest() throws SQLException,IOException{
+/*public static void runTest() throws SQLException,IOException{
 	Connection conn=getConnection();
 	Statement stmt =conn.createStatement();
 	ResultSet result = stmt.executeQuery("select * from tb_company");
@@ -85,9 +85,9 @@ public static void runTest() throws SQLException,IOException{
 		System.out.println(result.getString(6));
 	}
 	closeJDBC(result,stmt,conn);
-}
+}*/
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		try {
 			runTest();
@@ -99,7 +99,7 @@ public static void runTest() throws SQLException,IOException{
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 
 
 }

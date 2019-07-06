@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cn.edu.imnu.mytask.dao.InformationDao;
 
@@ -41,7 +42,7 @@ public class StudentServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=response.getWriter();
-		int tags = 0;
+		int tags = 1;
 		String realnumber=request.getParameter("realnumber");
 		String realname=request.getParameter("realname");
 		String realgrade=request.getParameter("realgrade");
@@ -49,13 +50,20 @@ public class StudentServlet extends HttpServlet {
 		String telephone=request.getParameter("telephone");
 		String dormitory=request.getParameter("dormitory");
 		InformationDao dao = new InformationDao();
-		boolean flag=dao.isExistInformation(realnumber);
+		if(!realnumber.equals("")) {
+			HttpSession session = request.getSession();
+			session.setAttribute("studentname", realname);
+		}
+		dao.saveStudentInformation(realnumber, realname, realgrade, realsex, telephone, dormitory, tags);
+		response.sendRedirect("student.jsp");
+		
+		/*boolean flag=dao.isExistInformation(realnumber);
 		if(flag)
 		{
 			response.sendRedirect("student.jsp");
 		}else {
 			response.sendRedirect("login.jsp");		
-		}
+		}*/
 	}
 
 }
